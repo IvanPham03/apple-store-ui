@@ -10,64 +10,89 @@ import {
   Support,
   News,
   Errors,
-} from "../../pages";
+} from "pages";
 
+import { DefaultLayout } from "components/layout";
+import Detail from "components/detail/Detail";
 
 const routes = [
   {
     path: "/",
     breadcrumb: "Trang chủ",
-    component: <Home />,
+    component: Home,
+    layout: DefaultLayout
   },
   {
     path: "/iphone",
     breadcrumb: "Iphone",
-    component: <Iphone />,
+    component: Iphone,
+    layout: DefaultLayout
+  },
+  {
+    path: "/iphone/:id",
+    breadcrumb: "Iphone",
+    component: Detail,
+    layout: DefaultLayout
   },
   {
     path: "/macbook",
     breadcrumb: "Macbook",
-    component: <Macbook />,
+    component: Macbook,
+    layout: DefaultLayout
   },
   {
     path: "/ipad",
     breadcrumb: "Ipad",
-    component: <Ipad />,
+    component: Ipad,
+    layout: DefaultLayout
   },
   {
     path: "/watch",
     breadcrumb: "Watch",
-    component: <Watch />,
+    component: Watch,
+    layout: DefaultLayout
   },
   {
     path: "/airpods",
     breadcrumb: "Airpods",
-    component: <Airpods />,
+    component: Airpods,
+    layout: DefaultLayout
   },
   {
     path: "/sound",
     breadcrumb: "Âm thanh",
-    component: <Sound />,
+    component: Sound,
+    layout: DefaultLayout
   },
   {
     path: "/accessories",
     breadcrumb: "Phụ kiện",
-    component: <Accessories />,
+    component: Accessories,
+    layout: DefaultLayout
   },
   {
     path: "/support",
     breadcrumb: "Hỗ trợ",
-    component: <Support />,
+    component: Support,
+    layout: DefaultLayout
   },
   {
     path: "/news",
     breadcrumb: "Tin tức",
-    component: <News />,
+    component: News,
+    layout: DefaultLayout
+  },
+  {
+    path: "/",
+    breadcrumb: "Tin tức",
+    component: News,
+    layout: DefaultLayout
   },
   {
     path: "*",
     breadcrumb: "",
-    component: <Errors />,
+    component: Errors,
+    layout: DefaultLayout
   },
 ];
 

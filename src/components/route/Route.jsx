@@ -1,23 +1,24 @@
 import { Routes, Route } from "react-router-dom";
-// import {
-//   Iphone,
-//   Macbook,
-//   Ipad,
-//   Watch,
-//   Airpods,
-//   Sound,
-//   Accessories,
-//   Support,
-//   News,
-//   Errors,
-// } from "../../pages";
-
+import { DefaultLayout } from "../layout";
 const Index = ({ routes }) => {
   return (
     <Routes>
       {routes.map((route) => {
+        const Page = route.component;
+        let Layout = DefaultLayout;
+        if (route.layout) {
+          Layout = route.layout;
+        } else if (route.layout === null) {
+          Layout = <></>;
+        }
         return (
-          <Route key={route.path} path={route.path} element={route.component} />
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <Layout page={Page} />
+            }
+          />
         );
       })}
     </Routes>

@@ -1,0 +1,7 @@
+.slick-list {
+    margin: -10px !important;
+}
+
+.slick-slide>div {
+    margin: 20px 10px;
+}

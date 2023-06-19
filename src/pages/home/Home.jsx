@@ -1,130 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import React from "react";
 //component
+import videoIntro from "assets/video/hello-video-intro.mp4";
+import img from "assets/img/ip-14-series.png";
+import { MultipleRows } from "components/card";
+import Type from "components/type/Type";
+import News from "components/news/News";
 
-import Footer from "../../components/footer/Footer";
-import videoIntro from "../../assets/video/hello-video-intro.mp4";
-import imgNews from "../../assets/img/news.jpg";
-import {Carousel} from "../../components/card/Cards";
-import Type from "../../components/type/Type";
 const Home = () => {
-  
+  const typeIphone = [
+    { title: "iPhone 11 series", img: { img }, url: "iphone-11" },
+    { title: "iPhone 12 series", img: { img }, url: "iphone-12" },
+    { title: "iPhone 13 series", img: { img }, url: "iphone-13" },
+    { title: "iPhone 14 series", img: { img }, url: "iphone-14" },
+  ];
+  const linkIphone = process.env.REACT_APP_API_DOMAIN + '/iphone'
+  const linkMac = process.env.REACT_APP_API_DOMAIN + '/macbook'
+  const linkAirpods = process.env.REACT_APP_API_DOMAIN + '/airpods'
+  const linkIpad = process.env.REACT_APP_API_DOMAIN + '/ipad'
   return (
-    <div className="grid justify-items-center">
+    <>
       {/* intro */}
       <video
         autoPlay
         loop
         muted
-        className="2xl:w-[600px] xl:w-[500px] bg-red my-[40px]"
+        className="2xl:w-[600px] xl:w-[500px] bg-red-500 my-[40px]"
       >
         <source src={videoIntro} />
       </video>
       {/*body */}
-      <div className="bg-main w-screen grid justify-items-center">
+      <div className="w-screen shadow-[0_-1px_4px_0px_rgba(0,0,0,0.15)]">
         {/* series to nav */}
-       <Type />
-        {/* list card */}
-        <Carousel />
-        <Carousel />
-        <Carousel />
-        <Carousel />
+        <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
+          <Type type={typeIphone} />
+          <MultipleRows link={linkIphone} />
+        </div>
+        <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
+          <Type type={typeIphone} />
+          <MultipleRows link={linkMac}  />
+        </div>
+        <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
+          <Type type={typeIphone} />
+          <MultipleRows link={linkIpad}  />
+        </div>
+        <div className="grid justify-items-center content-stawrt bg-gradient-to-b from-[#F4F9F9] to-white">
+          <Type type={typeIphone} />
+          <MultipleRows link={linkAirpods} />
+        </div>
       </div>
       {/* list news */}
-      <div className="xl:w-[1250px] grid justify-items-center h-[1000px] my-[20px]">
-        {/* row have 3 items */}
-        <div className="flex justify-between gap-[50px]">
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-        </div>
-        <div className="flex justify-between gap-[50px]">
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-        </div>
-        <div className="flex justify-between gap-[50px]">
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-          <div className="flex gap-4 border-b-[1px] border-black h-[167.47px]">
-            <span>
-              <img
-                src={imgNews}
-                className="w-[158.3px] h-[120px] rounded-[10px] object-cover"
-              />
-            </span>
-            <span className="font-bold">Khi nào iOS 16.5 ra mắt?</span>
-          </div>
-        </div>
-      </div>
-      {/* footer */}
-      <Footer />
-    </div>
+      <News />
+    </>
   );
 };
 

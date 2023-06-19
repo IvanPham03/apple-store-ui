@@ -5,14 +5,32 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-import logo from "../../assets/logo/logo-apple-black.png";
-import search from "../../assets/icon/search.png";
-import cart from "../../assets/icon/shopping-cart.png";
+import logo from "assets/logo/logo-apple-black.png";
+import search from "assets/icon/search.png";
+import cart from "assets/icon/shopping-cart.png";
+import { useEffect, useState } from "react";
 
 const Nav = () => {
+  const [stickyClass, setStickyClass] = useState('relative');
+
+  useEffect(() => {
+    window.addEventListener('scroll', stickNavbar);
+
+    return () => {
+      window.removeEventListener('scroll', stickNavbar);
+    };
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 50 ? setStickyClass('fixed top-0 left-0 z-50') : setStickyClass('relative');
+    }
+  };
+
   return (
     <>
-      <div className="flex justify-center max-w-screen h-[50px] drop-shadow-sm bg-main shadow-lg self-center">
+      <div className={`flex justify-center w-screen h-[50px] drop-shadow-sm bg-main shadow-lg self-center ${stickyClass} transition-transform`}>
         <Navbar className="w-[1280px] flex justify-between h-[30px] self-center bg-inherit text-black border-none">
           <div className="flex justify-between text-sm w-full drop-shadow-sm self-center">
             <div>
@@ -61,13 +79,13 @@ const Nav = () => {
               </Link>
             </div>
             <div>
-              <Button className="w-4 h-4 self-center">
-                <img src={search} alt="icon-search" />
+              <Button className="w-8 h-6 self-center p-0 bg-transparent" >
+                <img src={search} alt="icon-search" className="object-fit h-4" />
               </Button>
             </div>
             <div>
-              <Button className="w-4 h-4 self-center">
-                <img src={cart} alt="icon-cart" />
+              <Button className="w-8 h-6 self-center p-0 bg-transparent">
+                <img src={cart} alt="icon-cart" className="h-4 object-fit" />
               </Button>
             </div>
           </div>

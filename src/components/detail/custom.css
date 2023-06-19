@@ -1,0 +1,34 @@
+.slick-dots{
+    display: flex !important;
+    justify-content: start;
+    flex-wrap: nowrap;
+    height: 100px;
+    max-width: 500px;
+    align-items: center;
+    /* background-color: blue; */
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    background-color: transparent;
+    box-shadow: 4px 4px 10px #ddd;
+    border-radius: 8px;
+    gap: 10px;
+}
+.slick-dots::-webkit-scrollbar {
+    display: none !important; /* Safari and Chrome */
+  }
+.slick-dots>li{
+    height: 70%;
+    width: 100px;
+    border-radius: 8px;
+}
+.slick-dots .slick-active {
+    border: 2px red solid;
+    transition: ease-in-out 1s ;
+}
+/* .slick-next::before, .slick-prev::before{
+    color: #F4F9F9;
+}
+.slick-next, .slick-prev{
+    transform: translateY(-100px);
+} */

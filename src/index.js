@@ -1,19 +1,24 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
-import App from "./App";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import ReactDOM from "react-dom/client";
+import createSagaMiddleware from "redux-saga";
+import { Provider } from "react-redux";
+import routes from "./components/route/Routes";
 import "./index.css";
-import routes from './components/route/Routes.jsx'
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-
+import App from "./App";
+import reducers from "./redux/reducers";
+import saga from "./redux/sagas";
 
 const props = routes;
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(saga);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-  <App routes={props} />
-</Router>
+  <Provider store={store}>
+    <Router>
+      <App routes={props} />
+    </Router>
+  </Provider>
 );
-

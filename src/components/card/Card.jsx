@@ -1,20 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import img from "../../assets/img/ip-14-series.png";
-import star from "../../assets/icon/star.png";
-import heart from "../../assets/icon/heart.png";
+import img from "assets/img/ip-14-series.png";
+import star from "assets/icon/star.png";
+import heart from "assets/icon/heart.png";
 
 
 const Card = (props) => {
   const iphone = props.iphone;
+  const isSwiping =props.isSwiping;
   const price = iphone.price && iphone.price.toLocaleString();
   const priceFinal = (iphone.price - iphone.price*iphone.discount/100).toLocaleString();
   let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `newPath`; 
+  const handleClick = () => {
+    if (!isSwiping) {
     navigate(`/iphone/${iphone.model}`);
+    }
   }
   return (
-    <div className="rounded-[8px] bg-white shadow-[1px_1px_4px_rgba(0,0,0,0.25)] border-[.1px] border-slate-200 group hover:cursor-pointer" onClick={routeChange}>
+    <div className="max-w-[250px] xl:h-[380px] rounded-[8px] bg-white shadow-[1px_1px_4px_rgba(0,0,0,0.25)] border-[.1px] border-slate-200 group hover:cursor-pointer" onClick={handleClick}>
     {/* label discount */}
     <p className="bg-red-500 text-white inline-block py-1 px-4 rounded-tl-[7px] rounded-br-[7px]">
       {iphone.discount}%
