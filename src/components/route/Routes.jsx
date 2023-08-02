@@ -12,8 +12,9 @@ import {
   Errors,
 } from "pages";
 
-import { DefaultLayout } from "components/layout";
+import { DefaultLayout, AuthLayout } from "components/layout";
 import Detail from "components/detail/Detail";
+import {SignIn, SignUp} from "pages/auth";
 
 const routes = [
   {
@@ -83,10 +84,16 @@ const routes = [
     layout: DefaultLayout
   },
   {
-    path: "/",
-    breadcrumb: "Tin tức",
-    component: News,
-    layout: DefaultLayout
+    path: "/signin",
+    breadcrumb: "Đăng nhập",
+    component: SignIn,
+    layout: AuthLayout
+  },
+  {
+    path: "/signup",
+    breadcrumb: "Đăng ký",
+    component: SignUp,
+    layout: AuthLayout
   },
   {
     path: "*",

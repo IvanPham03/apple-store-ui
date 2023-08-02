@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Slider from "react-slick";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "redux/actions";
+import { productsState$ } from "redux/selectors";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+// ----------------------------
 import Card from "./Card";
-import { NavLink } from "react-router-dom";
+//
 const MultipleRows = (props) => {
-  const [iphones, setIphones] = useState();
-  const [countCard, setcountcard] = useState(0);
+  const dispatch = useDispatch();
+  const iphones = useSelector(productsState$);
+  const [over, setOver] = useState(false);
   const [isSwiping, setIsSwiping] = useState(false);
 
-  useEffect(() => {
-    fetchListIphone();
-  }, []);
 
-  const fetchListIphone = async () => {
-    try {
-      var res = await fetch(process.env.REACT_APP_API_ENDPOINT + "/iphone");
-      const jsondata = await res.json();
-      setcountcard(jsondata.length);
-      setIphones(jsondata.slice(0, 20));
-    } catch (error) {
-      console.log("message error from fetch iphone:", error);
-    }
-  };
+  // nó được gị 1 lần, nhưng nó sẽ bị re render do slick render lai
+  useEffect(() => {
+    dispatch(getProducts.getProductsRequest());
+  }, [dispatch]);
+
 
   const settings = {
     infinite: true,
     speed: 1000,
     autoplay: true,
     slidesToShow:
-      countCard && countCard > 0 ? (countCard > 5 ? 5 : countCard) : 1,
+      iphones && iphones.length > 0 ? (iphones.length > 5 ? 5 : iphones.length) : 1,
     autoplaySpeed: 2000,
     rows: 2,
     swipeToSlide: true,
@@ -42,7 +41,6 @@ const MultipleRows = (props) => {
       setIsSwiping(false); // Đánh dấu là swipe đã kết thúc
     },
   };
-  const [over, setOver] = useState(false);
   return (
     <>
       <div className="2xl:w-[1280px] xl:w-[1280px] overflow-hidden">

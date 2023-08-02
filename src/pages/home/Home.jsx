@@ -1,10 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 //component
 import videoIntro from "assets/video/hello-video-intro.mp4";
 import img from "assets/img/ip-14-series.png";
-import { MultipleRows } from "components/card";
-import Type from "components/type/Type";
 import News from "components/news/News";
+import Type from "components/type/Type";
+const MultipleRows= lazy(() => import("components/card/Multi"));
 
 const Home = () => {
   const typeIphone = [
@@ -20,11 +20,12 @@ const Home = () => {
   return (
     <>
       {/* intro */}
+      <Suspense fallback={<>hello</>}></Suspense>
       <video
         autoPlay
         loop
         muted
-        className="2xl:w-[600px] xl:w-[500px] bg-red-500 my-[40px]"
+        className="2xl:w-[600px] xl:w-[500px] my-[40px]"
       >
         <source src={videoIntro} />
       </video>
@@ -50,6 +51,7 @@ const Home = () => {
       </div>
       {/* list news */}
       <News />
+      <Suspense/>
     </>
   );
 };

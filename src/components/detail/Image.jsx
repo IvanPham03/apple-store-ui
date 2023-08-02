@@ -3,13 +3,14 @@ import Slider from "react-slick";
 import img from "assets/img/ip-14-series.png";
 import im from "assets/img/iphone-14-pro-den.jpg";
 import "./custom.css";
+import { NavLink } from "react-router-dom";
 const Image = () => {
   const settings = {
     customPaging: function (i) {
       return (
-        <a className="block h-full w-[80px]">
-          <img src={im} className="object-cover h-full w-full rounded-lg" />
-        </a>
+        <NavLink className="block h-full w-[80px]">
+          <img src={img} className="object-cover h-full w-full rounded-lg" />
+        </NavLink>
       );
     },
     dots: true,

@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "redux/actions";
+import { productsState$ } from "redux/selectors";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
 import "./custom.css";
 const Cards = () => {
-  const [iphones, setIphones] = useState();
-  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+  const dispatch = useDispatch();
+  const iphones = useSelector(productsState$);
   useEffect(() => {
-    fetchListIphone();
-  }, []);
+    dispatch(getProducts.getProductsRequest());
+  }, [dispatch]);
 
-  const fetchListIphone = async () => {
-    try {
-      var res = await fetch(apiUrl + "/iphone");
-      const jsondata = await res.json();
-      setIphones(jsondata);
-    } catch (error) {
-      console.log("message error from fetch iphone:", error);
-    }
-  };
 
   return (
     <>

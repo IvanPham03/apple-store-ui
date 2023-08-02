@@ -1,12 +1,15 @@
 import React from "react";
 import Route from "./components/route/Route";
+import { AuthContextProvider } from "auth/AuthContext";
 
 const App = ({ routes }) => {
   return (
     <>
       <div className="w -screen">
-        <Route routes={routes} />
-      </div>      
+        <AuthContextProvider>
+          <Route routes={routes} />
+        </AuthContextProvider>
+      </div>
     </>
   );
 };

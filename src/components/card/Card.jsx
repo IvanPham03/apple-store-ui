@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import img from "assets/img/ip-14-series.png";
 import star from "assets/icon/star.png";
 import heart from "assets/icon/heart.png";
+import { memo } from "react";
 
 
-const Card = (props) => {
+const Card = memo((props) => {
+  // console.log('render-card')
   const iphone = props.iphone;
   const isSwiping =props.isSwiping;
   const price = iphone.price && iphone.price.toLocaleString();
@@ -52,6 +54,6 @@ const Card = (props) => {
     </div>
     </div>
   );
-};
+});
 
 export default Card;

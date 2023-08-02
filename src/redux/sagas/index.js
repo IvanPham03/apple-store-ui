@@ -5,11 +5,10 @@ import * as api from 'api';
 function* fetchProductsSaga(action) {
   try {
     const products = yield call(api.fetchProducts);
-    console.log(products.data)
-    // yield put(actions.getProducts.getProductsSuccess(products.data));
+    yield put(actions.getProducts.getProductsSuccess(products.data));
   } catch (err) {
     console.error(err);
-    // yield put(actions.getProducts.getProductsFailure(err));
+    yield put(actions.getProducts.getProductsFailure(err));
   }
 }
 
