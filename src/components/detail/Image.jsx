@@ -25,23 +25,23 @@ const Image = () => {
   };
   return (
       <Slider {...settings} className="w-2/5 h-[500px]">
-        <div className="w-[350px] border-2 rounded-xl shadow-[4px_6px_12px_#ddd] hover:scale-110 transition">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition">
           <img src={im} className="object-cover object-center h-full rounded-xl" />
         </div>
         
-        <div className="w-[350px] border-2 rounded-xl shadow-[4px_6px_12px_#ddd] hover:scale-110 transition">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition">
           <img src={im} className="object-cover object-center h-full rounded-xl" />
         </div>
         
-        <div className="w-[350px] border-2 rounded-xl shadow-[4px_6px_12px_#ddd] hover:scale-110 transition">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition">
           <img src={im} className="object-cover object-center h-full rounded-xl" />
         </div>
         
-        <div className="w-[350px] border-2 rounded-xl shadow-[4px_6px_12px_#ddd] hover:scale-110 transition">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition">
           <img src={im} className="object-cover object-center h-full rounded-xl" />
         </div>
         
-        <div className="w-[350px] border-2 rounded-xl shadow-[4px_6px_12px_#ddd] hover:scale-110 transition">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition">
           <img src={im} className="object-cover object-center h-full rounded-xl" />
         </div>
         

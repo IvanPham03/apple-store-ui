@@ -10,7 +10,7 @@ import logo from "assets/logo/logo-apple-black.png";
 import search from "assets/icon/search.png";
 import cart from "assets/icon/cart.png";
 import user from "assets/icon/user.png";
-import Login from './button'
+import Login from './login'
 
 
 const Nav = () => {
