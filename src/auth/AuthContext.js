@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "./firebase";
+import Cookies from 'js-cookies'
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -11,7 +12,8 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  
+  console.log(Cookies.token);
+
   const googleSignIn = () => {
     // const provider = new GoogleAuthProvider();
     // signInWithPopup(auth, provider)
