@@ -6,18 +6,20 @@ import logo from "assets/logo/logo-apple-black.png";
 import google from "assets/icon/google.png";
 import { UserAuth } from "auth/AuthContext";
 import axios from "axios";
-import { Cookie } from "@mui/icons-material";
+import { useCookies } from "react-cookie";
+
+// import { Cookie } from "@mui/icons-material";
+axios.defaults.withCredentials = true;
 
 // ===============
 const Login = () => {
   const navigate = useNavigate();
   const { googleSignIn, user } = UserAuth();
   const [inputValue, setInputValue] = useState("");
-  const [dataType, setDataType] = useState(null);
-  const [data, setData] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
   const [showIsValid, setShowIsValid] = useState(false);
+
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
@@ -36,30 +38,38 @@ const Login = () => {
     return /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(phone);
   };
   const handleSubmit = async () => {
+    // check email & phone => request
     if (isValidEmail(inputValue)) {
-      setDataType("email");
+      await axios
+        .post(process.env.REACT_APP_API_ENDPOINT + "/auth/signin", {
+          email: inputValue,
+          password: password
+        })
+        .then(respone => {
+          console.log(respone.data);
+        })
+        .catch(error => {
+          console.error('loi', error);
+        });
     } else if (isValidPhone(inputValue)) {
-      setDataType("phone");
+      await axios
+        .post(process.env.REACT_APP_API_ENDPOINT + "/auth/signin", {
+          phone: inputValue,
+          password: password
+        })
+        .then(respone => {
+          console.log(respone.data);
+        })
+        .catch(error => {
+          // Xử lý lỗi ở đây
+          console.error('loi', error);
+        });
     } else {
       setShowIsValid(true);
       return;
     }
-    console.log(dataType);
-    await axios
-      .post(
-        process.env.REACT_APP_API_ENDPOINT+'/auth/signin',
-        {
-          // email: inputValue,
-          // password: password
-          email: "admin@gmail.com",
-          password: "admin"
-        },
-      )
-      .then(respone => {
-        console.log(respone.data);
-      });
-      const getToken = await Cookie.get('access-token')
-      console.log('token', getToken)
+    // const getToken = await Cookie.get('access-token')
+    // console.log('token', getToken)
   };
   return (
     <div className="w-[1280px] h-[1200px] grid place-items-center content-start my-10 ">

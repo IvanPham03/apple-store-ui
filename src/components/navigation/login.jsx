@@ -6,8 +6,11 @@ import { Button } from "@material-tailwind/react";
 import { UserAuth } from "auth/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faGear } from "@fortawesome/free-solid-svg-icons";
-const Login = () => {
-  const { user } = UserAuth; // useContext
+const capitalizeFirstLetter = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+const Login = (props) => {
+  const { user } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const toggleButtonVisibility = () => {
     setIsButtonVisible(!isButtonVisible);
@@ -17,7 +20,7 @@ const Login = () => {
   const handleNavLogin = () => {
     navigate("/signin");
   };
-
+ 
   return (
     <div className="relative ">
       <Button
@@ -32,10 +35,10 @@ const Login = () => {
             {user !== null ? (
               <div>
                 <button className="flex gap-2 my-2 items-center w-[100px]">
-                  <FontAwesomeIcon icon={faGear} /> <p>User name</p>
+                  <FontAwesomeIcon icon={faGear} /> <p>{user ? capitalizeFirstLetter(user.name): "User name"}</p>
                 </button>
                 <button className="flex gap-2 my-2 items-center w-[100px]" onClick={handleNavLogin}>
-                  <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng nhập</p>
+                  <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng xuất</p>
                 </button>
               </div>
             ) : (

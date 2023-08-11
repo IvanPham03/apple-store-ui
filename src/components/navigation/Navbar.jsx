@@ -11,25 +11,43 @@ import search from "assets/icon/search.png";
 import cart from "assets/icon/cart.png";
 import user from "assets/icon/user.png";
 import Login from './login'
+import { useCookies } from "react-cookie";
+import axios from "axios";
+
+
+const fecthUser = async(token) =>{
+  try {
+    const response = await axios.get(process.env.REACT_APP_API_ENDPOINT+'/auth/user', {
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    return response.data
+  } catch (error) {
+    console.log('fetch user: ',error)
+  }
+}
 
 
 const Nav = () => {
   const [stickyClass, setStickyClass] = useState('relative');
+  const [user, setUser]= useState(null)
   const navigate = useNavigate();
-  useEffect(() => {
-    window.addEventListener('scroll', stickNavbar);
-
-    return () => {
-      window.removeEventListener('scroll', stickNavbar);
-    };
-  }, []);
-
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 50 ? setStickyClass('fixed top-0 left-0 z-50') : setStickyClass('relative');
+  const [cookies] = useCookies(['access-token']);
+  useEffect(()=>{
+    if(cookies['access-token']){
+     (async () => {
+      try {
+        console.log('---------')
+        const data = await fecthUser(cookies["access-token"])
+        setUser(data)
+      } catch (error) {
+        console.log(error) 
+      } 
+     })()
     }
-  };
+    
+  }, [cookies['access-token']])
 
 
   return (
@@ -93,7 +111,7 @@ const Nav = () => {
               </Button>
             </div>
             <div>
-              <Login />
+              <Login user={user} />
             </div>
           </div>
         </Navbar>
