@@ -9,45 +9,50 @@ import {
 import logo from "assets/logo/logo-apple-black.png";
 import search from "assets/icon/search.png";
 import cart from "assets/icon/cart.png";
-import user from "assets/icon/user.png";
+// import user from "assets/icon/user.png";
 import Login from './login'
-import { useCookies } from "react-cookie";
-import axios from "axios";
 
 
-const fecthUser = async(token) =>{
-  try {
-    const response = await axios.get(process.env.REACT_APP_API_ENDPOINT+'/auth/user', {
-      headers:{
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    return response.data
-  } catch (error) {
-    console.log('fetch user: ',error)
-  }
-}
+// import { useCookies } from "react-cookie";
+// import axios from "axios";
+
+
+// const fecthUser = async(token) =>{
+//   try {
+//     const response = await axios.get(process.env.REACT_APP_API_ENDPOINT+'/auth/user', {
+//       headers:{
+//         'Authorization': `Bearer ${token}`
+//       }
+//     })
+//     return response.data
+//   } catch (error) {
+//     console.log('fetch user: ',error)
+//   }
+// }
 
 
 const Nav = () => {
   const [stickyClass, setStickyClass] = useState('relative');
-  const [user, setUser]= useState(null)
   const navigate = useNavigate();
-  const [cookies] = useCookies(['access-token']);
-  useEffect(()=>{
-    if(cookies['access-token']){
-     (async () => {
-      try {
-        console.log('---------')
-        const data = await fecthUser(cookies["access-token"])
-        setUser(data)
-      } catch (error) {
-        console.log(error) 
-      } 
-     })()
-    }
+  // const [cookies] = useCookies(['access-token']);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  // const handleLogin = () => {
+  //   setLoggedIn(true);
+  // };
+  // useEffect(()=>{
+  //   if(cookies['access-token']){
+  //    (async () => {
+  //     try {
+  //       const data = await fecthUser(cookies["access-token"])
+  //       setUser(data)
+  //     } catch (error) {
+  //       console.log(error) 
+  //     } 
+  //    })()
+  //   }
     
-  }, [cookies['access-token']])
+  // }, [cookies['access-token']])
 
 
   return (
@@ -111,7 +116,7 @@ const Nav = () => {
               </Button>
             </div>
             <div>
-              <Login user={user} />
+              <Login />
             </div>
           </div>
         </Navbar>

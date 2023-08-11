@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import userIcon from "assets/icon/user.png";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
-
 import { UserAuth } from "auth/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faGear } from "@fortawesome/free-solid-svg-icons";
+
+
+// conver characert to FirstUpper case
 const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-const Login = (props) => {
-  const { user } = props;
+const Login = () => {
+  const {user} = UserAuth()
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const toggleButtonVisibility = () => {
     setIsButtonVisible(!isButtonVisible);
@@ -19,7 +21,11 @@ const Login = (props) => {
   const navigate = useNavigate();
   const handleNavLogin = () => {
     navigate("/signin");
+    setIsButtonVisible(false)
   };
+  const handleSignOut = () =>{
+
+  }
  
   return (
     <div className="relative ">
@@ -35,15 +41,15 @@ const Login = (props) => {
             {user !== null ? (
               <div>
                 <button className="flex gap-2 my-2 items-center w-[100px]">
-                  <FontAwesomeIcon icon={faGear} /> <p>{user ? capitalizeFirstLetter(user.name): "User name"}</p>
+                  <FontAwesomeIcon icon={faGear} /> <p>{capitalizeFirstLetter(user.name)}</p>
                 </button>
-                <button className="flex gap-2 my-2 items-center w-[100px]" onClick={handleNavLogin}>
+                <button className="flex gap-2 my-2 items-center w-[100px]" onClick={handleSignOut}>
                   <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng xuất</p>
                 </button>
               </div>
             ) : (
-              <button className="flex gap-2 my-2 items-center w-[100px]">
-                <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng ký</p>
+              <button className="flex gap-2 my-2 items-center w-[100px]" onClick={handleNavLogin}>
+                <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng nhập</p>
               </button>
             )}
           </>
