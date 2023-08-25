@@ -1,12 +1,17 @@
-import React, { lazy, Suspense } from "react";
+import React, { Fragment, lazy, Suspense, useEffect, useState } from "react";
 //component
 import videoIntro from "assets/video/hello-video-intro.mp4";
 import img from "assets/img/ip-14-series.png";
 import News from "components/news/News";
 import Type from "components/type/Type";
+import axios from "axios";
 const MultipleRows= lazy(() => import("components/card/Multi"));
 
 const Home = () => {
+  const [fetchAllIphones, setFetchAllIphones] = useState([]);
+  const [fetchAllMacbooks, setFetchAllMacbooks] = useState([]);
+  const [fetchAllAirpods, setFetchAllAirpods] = useState([]);
+  const [fetchAllIpads, setFetchAllIpads] = useState([]);
   const typeIphone = [
     { title: "iPhone 11 series", img: { img }, url: "iphone-11" },
     { title: "iPhone 12 series", img: { img }, url: "iphone-12" },
@@ -17,8 +22,21 @@ const Home = () => {
   const linkMac = process.env.REACT_APP_API_DOMAIN + '/macbook'
   const linkAirpods = process.env.REACT_APP_API_DOMAIN + '/airpods'
   const linkIpad = process.env.REACT_APP_API_DOMAIN + '/ipad'
+
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_API_ENDPOINT + "/product", {
+        params: { category: "iphone" }
+      })
+      .then(res => {setFetchAllIphones(res.data)
+      setFetchAllMacbooks(res.data)
+      setFetchAllAirpods(res.data)
+      setFetchAllIpads(res.data)
+    });
+  }, []);
+  
   return (
-    <>
+    <Fragment>
       {/* intro */}
       <Suspense fallback={<>hello</>}></Suspense>
       <video
@@ -34,25 +52,25 @@ const Home = () => {
         {/* series to nav */}
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows link={linkIphone} />
+          <MultipleRows root={"iphone"} products={fetchAllIphones} />
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows link={linkMac}  />
+          <MultipleRows root={"macbook"}  products ={fetchAllMacbooks}/>
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows link={linkIpad}  />
+          <MultipleRows root={"ipad"} products = {fetchAllIpads} />
         </div>
         <div className="grid justify-items-center content-stawrt bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows link={linkAirpods} />
+          <MultipleRows root={"airpods"} products = {fetchAllAirpods}/>
         </div>
       </div>
       {/* list news */}
       <News />
       <Suspense/>
-    </>
+    </Fragment>
   );
 };
 

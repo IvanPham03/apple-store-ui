@@ -1,11 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "redux/actions";
-import { productsState$ } from "redux/selectors";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -13,24 +10,17 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
 //
 const MultipleRows = (props) => {
-  const dispatch = useDispatch();
-  const iphones = useSelector(productsState$);
+  const products = props.products
   const [over, setOver] = useState(false);
   const [isSwiping, setIsSwiping] = useState(false);
-
-
-  // nó được gị 1 lần, nhưng nó sẽ bị re render do slick render lai
-  useEffect(() => {
-    dispatch(getProducts.getProductsRequest());
-  }, [dispatch]);
-
+ 
 
   const settings = {
     infinite: true,
     speed: 1000,
     autoplay: true,
     slidesToShow:
-      iphones && iphones.length > 0 ? (iphones.length > 5 ? 5 : iphones.length) : 1,
+      products && products.length > 0 ? (products.length > 5 ? 5 : products.length) : 1,
     autoplaySpeed: 2000,
     rows: 2,
     swipeToSlide: true,
@@ -45,16 +35,16 @@ const MultipleRows = (props) => {
     <>
       <div className="2xl:w-[1280px] xl:w-[1280px] overflow-hidden">
         <Slider {...settings} className="my-8">
-          {iphones &&
-            iphones.map((iphone) => {
+          {products &&
+            products.map((iphone) => {
               return (
-                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} />
+                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} root={props.root} />
               );
             })}
         </Slider>
         <div className="flex justify-center my-14 ">
           <button
-            className="flex group h-12 border border-1 border-red-500 bg-main place-items-center py-2 px-8 rounded-lg gap-2 hover:bg-red-500 transition duration-200 ease-linear"
+            className="flex group h-12 border border-1 border-red-500 bg-main place-products-center py-2 px-8 rounded-lg gap-2 hover:bg-red-500 transition duration-200 ease-linear"
             onMouseOver={() => setOver(true)}
             onMouseLeave={() => setOver(false)}
           >

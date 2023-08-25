@@ -58,8 +58,8 @@ const Nav = () => {
   return (
     <>
       <div className={`flex justify-center w-screen h-[50px] drop-shadow-sm bg-main shadow-lg self-center ${stickyClass} transition-transform`}>
-        <Navbar className="w-[1280px] flex justify-between h-[30px] self-center bg-inherit text-black border-none px-0">
-          <div className="flex justify-between text-sm w-[1280px]  drop-shadow-sm self-center">
+        <Navbar className="w-[1280px] bg-main flex justify-between h-[30px] self-center bg-inherit text-black border-none px-0">
+          <div className="flex justify-between text-sm w-[1280px]  drop-shadow-sm self-center items-center">
             <div>
               <Link to="/" className="flex items-center">
                 <img src={logo} alt={logo} className="object-fill h-5" />
@@ -106,12 +106,12 @@ const Nav = () => {
               </Link>
             </div>
             <div>
-              <Button className="w-8 h-6 self-center p-0 bg-transparent flex justify-center" >
+              <Button className="w-8 h-6 self-center p-0 bg-transparent flex justify-center items-center" >
                 <img src={search} alt="icon-search" className="object-fit h-4" />
               </Button>
             </div>
             <div>
-              <Button className="w-8 h-6 self-center p-0 bg-transparent flex justify-center">
+              <Button className="w-8 h-6 self-center p-0 bg-transparent flex justify-center items-center">
                 <img src={cart} alt="icon-cart" className="h-4 object-fit center" />
               </Button>
             </div>

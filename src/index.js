@@ -10,10 +10,13 @@ import App from "./App";
 import reducers from "./redux/reducers";
 import saga from "./redux/sagas";
 
-const props = routes;
+const props = routes; // create route
+// Create Redux Store with Middleware
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(saga);
+
+//
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

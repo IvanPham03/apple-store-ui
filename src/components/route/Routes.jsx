@@ -9,12 +9,12 @@ import {
   Accessories,
   Support,
   News,
-  Errors,
+  Errors
 } from "pages";
 
 import { DefaultLayout, AuthLayout } from "components/layout";
 import Detail from "components/detail/Detail";
-import {SignIn, SignUp} from "pages/auth";
+import { SignIn, SignUp } from "pages/auth";
 
 const routes = [
   {
@@ -29,12 +29,7 @@ const routes = [
     component: Iphone,
     layout: DefaultLayout
   },
-  {
-    path: "/iphone/:id",
-    breadcrumb: "Iphone",
-    component: Detail,
-    layout: DefaultLayout
-  },
+
   {
     path: "/macbook",
     breadcrumb: "Macbook",
@@ -96,11 +91,17 @@ const routes = [
     layout: AuthLayout
   },
   {
+    path: "/:model",
+    breadcrumb: "Detial",
+    component: Detail,
+    layout: DefaultLayout
+  },
+  {
     path: "*",
     breadcrumb: "",
     component: Errors,
     layout: DefaultLayout
-  },
+  }
 ];
 
-export default routes
+export default routes;

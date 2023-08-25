@@ -14,22 +14,26 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const fecthUser = async token => {
     try {
-      const response = await axios.get(
-        process.env.REACT_APP_API_ENDPOINT + "/auth/user",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
+      if (token !== undefined) {
+        console.log('token', token);
+        const response = await axios.get(
+          process.env.REACT_APP_API_ENDPOINT + "/auth/user",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           }
-        }
-      );
-      return response.data;
+        );
+        return response.data;
+      }
+      return undefined;
     } catch (error) {
       console.log("fetch user: ", error);
     }
   };
 
   const [cookies] = useCookies(["access-token"]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
   const [previousURL, setPreviousURL] = useState(null);
   const googleSignIn = () => {
     //   const provider = new GoogleAuthProvider();
@@ -72,7 +76,14 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
   return (
     <AuthContext.Provider
-      value={{ googleSignIn, user, setUser, previousURL, setPreviousURL, fecthUser }}
+      value={{
+        googleSignIn,
+        user,
+        setUser,
+        previousURL,
+        setPreviousURL,
+        fecthUser
+      }}
     >
       {children}
     </AuthContext.Provider>

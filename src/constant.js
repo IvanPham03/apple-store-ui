@@ -1,9 +1,9 @@
 export const INIT_STATE = {
   entity: {
     isLoading: false,
-    data: [],
+    data: []
   },
   modal: {
-    isShow: false,
-  },
+    isShow: false
+  }
 };

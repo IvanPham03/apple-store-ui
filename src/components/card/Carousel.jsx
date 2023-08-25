@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "redux/actions";
-import { productsState$ } from "redux/selectors";import Card from "./Card";
+import Card from "./Card";
 import {
-  // MobileNav,
   Button,
 } from "@material-tailwind/react";
 
@@ -18,18 +15,12 @@ import './custom.css'
 
 
 // 1 row
-const Carousel = () => {
-  const iphones = useSelector(productsState$);
-  const dispatch = useDispatch();
+const Carousel = ({iphones, root}) => {
   // ref button
   const [sliderRef, setSliderRef] = useState(null);
   // check có đang swipe không, xử lý trường hợp khi swipe nó lại dính onclick
   const [isSwiping, setIsSwiping] = useState(false);
  // nó được gị 1 lần, nhưng nó sẽ bị re render do slick render lai
- useEffect(() => {
-  dispatch(getProducts.getProductsRequest());
-}, [dispatch]);
-
 
   const settings = {
     speed: 1000,
@@ -75,7 +66,7 @@ const Carousel = () => {
         {iphones &&
             iphones.map((iphone) => {
               return (
-                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} />
+                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} root={root}/>
               );
             })}
         </Slider>

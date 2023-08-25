@@ -1,8 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
+import qs from "qs";
+const URL = "http://localhost:3001";
 
-const URL = 'http://localhost:3001';
-
-export const fetchProducts = () => axios.get(`${URL}/iphone`);
-export const createProduct = (payload) => axios.post(`${URL}/posts`, payload);
-export const updateProduct = (payload) =>
-  axios.post(`${URL}/product/update`, payload);
+export const fetchProducts = payload =>
+  axios.get(`${URL}/product/filter-product`, {params: payload});
+  // axios.get(`${URL}/product?${payload}`); using qs convert to string query

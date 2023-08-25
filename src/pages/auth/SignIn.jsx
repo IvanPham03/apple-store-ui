@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { UserAuth } from "auth/AuthContext";
-import { useCookies } from "react-cookie";
+
+import {isValidEmail, isValidPhone} from './function'
 import logo from "assets/logo/logo-apple-black.png";
 import google from "assets/icon/google.png";
 
@@ -32,12 +33,7 @@ const Login = () => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
-  const isValidEmail = email => {
-    return /\S+@\S+\.\S+/.test(email);
-  };
-  const isValidPhone = phone => {
-    return /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(phone);
-  };
+
 
   const submitLogin = async(inputValue, password) =>{
     if (isValidEmail(inputValue)) {
