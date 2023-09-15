@@ -4,7 +4,7 @@ import send from "assets/icon/icon-send.png";
 
 const Question = () => {
   return (
-    <div className="bg-main h-[300px] xl:w-[1250px] my-4 rounded-lg drop-shadow-md">
+    <div className="bg-main h-[300px] 2xl:w-[1280px] xl:w-[1200px] my-4 rounded-lg drop-shadow-md">
       <p className="text-xl font-medium m-4">Hỏi và đáp</p>
       <div className="flex gap-6 justify-center">
         <textarea

@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { UserAuth } from "auth/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faGear, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
@@ -51,10 +51,10 @@ const Login = () => {
   return (
     <div className="relative ">
       <Button
-        className="w-8 h-6 self-center p-0 bg-transparent flex justify-center items-center"
+        className="h-6 self-center p-0 bg-transparent flex hover:opacity-60"
         onClick={toggleButtonVisibility}
       >
-        <img src={userIcon} alt="icon-user" className="h-4 object-fit" />
+      <FontAwesomeIcon icon={faUser} className="h-5 w-5" style={{ color: 'black' }} />
       </Button>
       <div className="px-4 absolute right-5 text-right bg-main rounded drop-shadow-lg">
         {isButtonVisible && (

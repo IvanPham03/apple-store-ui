@@ -15,12 +15,15 @@ const MultipleRows = (props) => {
   const [isSwiping, setIsSwiping] = useState(false);
  
 
+  const checkEven = products.length % 2 === 0? products.length: products.length-1 
+  const iphones = products.slice(0, checkEven)
+  console.table(iphones);
   const settings = {
     infinite: true,
     speed: 1000,
     autoplay: true,
     slidesToShow:
-      products && products.length > 0 ? (products.length > 5 ? 5 : products.length) : 1,
+      products && checkEven > 0 ? (checkEven > 5 ? 5 : checkEven) : 1,
     autoplaySpeed: 2000,
     rows: 2,
     swipeToSlide: true,
@@ -33,10 +36,10 @@ const MultipleRows = (props) => {
   };
   return (
     <>
-      <div className="2xl:w-[1280px] xl:w-[1280px] overflow-hidden">
+      <div className="2xl:w-[1280px] xl:w-[1200px] lg: hidden overflow-hidden">
         <Slider {...settings} className="my-8">
-          {products &&
-            products.map((iphone) => {
+          {iphones &&
+            iphones.map((iphone) => {
               return (
                 <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} root={props.root} />
               );

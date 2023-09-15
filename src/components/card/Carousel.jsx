@@ -15,7 +15,7 @@ import './custom.css'
 
 
 // 1 row
-const Carousel = ({iphones, root}) => {
+const Carousel = ({iphones}) => {
   // ref button
   const [sliderRef, setSliderRef] = useState(null);
   // check có đang swipe không, xử lý trường hợp khi swipe nó lại dính onclick
@@ -40,7 +40,7 @@ const Carousel = ({iphones, root}) => {
   };
   return (
     <>
-      <div className="flex justify-between bg-red-500 xl:w-[1280px] h-[50px] items-center rounded-[7px] mt-10">
+      <div className="flex justify-between bg-red-500 2xl:w-[1280px] xl:w-[1200px] h-[50px] items-center rounded-[7px] mt-10">
         <p className="ml-4 text-white text-xl font-medium ">
           Sản phẩm bán chạy
         </p>
@@ -61,12 +61,12 @@ const Carousel = ({iphones, root}) => {
           </Button>
         </p>
       </div>
-      <div className="2xl:w-[1280px] xl:w-[1280px] overflow-hidden">
+      <div className="2xl:w-[1280px] xl:w-[1200px] lg:hidden overflow-hidden">
         <Slider {...settings} ref={setSliderRef} className="my-2">
         {iphones &&
             iphones.map((iphone) => {
               return (
-                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id} root={root}/>
+                <Card iphone={iphone} isSwiping={isSwiping} key={iphone._id}/>
               );
             })}
         </Slider>

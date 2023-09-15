@@ -52,19 +52,19 @@ const Home = () => {
         {/* series to nav */}
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows root={"iphone"} products={fetchAllIphones} />
+          <MultipleRows products={fetchAllIphones} />
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows root={"macbook"}  products ={fetchAllMacbooks}/>
+          <MultipleRows  products ={fetchAllMacbooks}/>
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows root={"ipad"} products = {fetchAllIpads} />
+          <MultipleRows products = {fetchAllIpads} />
         </div>
         <div className="grid justify-items-center content-stawrt bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows root={"airpods"} products = {fetchAllAirpods}/>
+          <MultipleRows products = {fetchAllAirpods}/>
         </div>
       </div>
       {/* list news */}

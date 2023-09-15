@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const news = () => {
   return (
-    <div className="xl:w-[1250px] my-[20px]">
+    <div className="2xl:w-[1280px] xl:w-[1200px] my-[20px]">
         {/* row have 3 items */}
         <p className="text-left my-4 text-xl font-medium text-red-500">
           Tin tức

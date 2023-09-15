@@ -96,7 +96,7 @@ const Iphone = () => {
   }, []);
   return (
     <Fragment>
-      <div className="flex gap-8 my-6 w-[1280px]">
+      <div className="flex justify-between gap-8 my-6 2xl:w-[1280px] xl:w-[1200px]">
         <div>
           {" "}<img src={iphone} alt="iphone-intro" />
         </div>
@@ -106,10 +106,10 @@ const Iphone = () => {
       </div>
       <div className="w-screen flex justify-center shadow-[0_-1px_4px_0px_rgba(0,0,0,0.15)] bg-gradient-to-b from-[#F4F9F9] to-white">
         {/* series to nav */}
-        <div className="w-[1280px]">
+        <div className="2xl:w-[1280px] xl:w-[1200px]">
           <div className="grid justify-items-center content-start">
             <Type type={typeIphone} />
-            <Carousel iphones={carouselData} root={''} />
+            <Carousel iphones={carouselData} />
             <div className="w-full">
               <p className="text-xl font-medium py-2">
                 Chọn sản phẩm theo tiêu chí

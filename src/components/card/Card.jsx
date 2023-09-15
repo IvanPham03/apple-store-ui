@@ -9,16 +9,15 @@ const Card = memo(props => {
   const iphone = props.iphone;
   const isSwiping = props.isSwiping;
   const price = iphone.price && iphone.price.toLocaleString();
-  let navigate = useNavigate();
-  // const handleClick = () => {
-  //   if (!isSwiping) {
-  //     navigate(root + `/${iphone.model}`);
-  //   }
-  // };
+  let navigate = useNavigate(); 
+  const handleClick = () => {
+    if (!isSwiping) {
+    navigate(`/${iphone.model}`)
+    }
+  }
   return (
-    <Link
-      className="block max-w-[250px] xl:h-[380px] rounded-[8px] bg-white shadow-[1px_1px_4px_rgba(0,0,0,0.25)] border-[.1px] border-slate-200 group hover:cursor-pointer"
-      to={`/${iphone.model}`}
+    <div
+      className="block max-w-[250px] xl:h-[380px] rounded-[8px] bg-white shadow-[1px_1px_4px_rgba(0,0,0,0.25)] border-[.1px] border-slate-200 group hover:cursor-pointer" onClick={handleClick}
     >
       {/* label discount */}
       {iphone.discount > 0
@@ -36,7 +35,7 @@ const Card = memo(props => {
         <p className="font-bold group-hover:text-red-500 transition">
           {iphone.name} {iphone.storage}
         </p>
-        <div className="flex justify-between my-4 ư-">
+        <div className="flex justify-between my-4">
           <span className="text-red-500 font-bold">
             {" "}{iphone.priceDiscounted.toLocaleString()}đ
           </span>
@@ -49,20 +48,20 @@ const Card = memo(props => {
         <div className="flex justify-between my-4">
           <span className="flex">
             <img src={star} className="h-5 w-5 object-contain" />
-            <img src={star} className="h-5 w-5 object-contain" />
+            <img src={star} className="h-5  w-5 object-contain" />
             <img src={star} className="h-5 w-5 object-contain" />
             <img src={star} className="h-5 w-5 object-contain" />
             <img src={star} className="h-5 w-5 object-contain" />
           </span>
-          <span className="flex gap-1">
-            <span>Yêu thích</span>
+          <span className="flex gap-1 text-sm">
+            <span className="xl:block md:hidden">Yêu thích</span>
             <span>
               <img src={heart} className="h-5 w-5 object-contain" />
             </span>
           </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 });
 

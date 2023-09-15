@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
     <section className="bg-main w-full grid place-content-center">
-      <div className="w-screen h-96 flex max-w-[1250px] my-8">
+      <div className="w-screen h-96 flex 2xl:w-[1280px] xl:w-[1200px] my-8">
         <div className="w-1/4">
           <div className="font-bold my-4">Hỗ trợ khách hàng</div>
           <div className="flex gap-4 my-4">
