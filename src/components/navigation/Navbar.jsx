@@ -94,30 +94,30 @@ const Nav = () => {
               </Button>
             </div>
             <div className="w-full h-full lg:h-auto lg:block lg:oder-1 absolute" id="navbar-sticky">
-              <div className="z-10000 bg-main w-screen h-screen overflow-x-hidden overflow-y-hidden top-9 left-0 right-0 flex xl:static justify-start fixed -ml-2 flex-col lg:bg-inherit lg:flex-row lg:w-full lg:h-auto lg:gap-8 gap-10 pl-8 pt-8">
-                <Link to="/iphone" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Iphone <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+              <div className=" z-10000 bg-main w-screen h-screen overflow-x-hidden overflow-y-hidden top-9 left-0 right-0 flex lg:static lg:justify-center  bg-red-500 justify-start fixed -ml-2 flex-col lg:bg-inherit lg:flex-row lg:w-full lg:h-auto lg:gap-8 gap-10 pl-8 pt-8">
+                <Link to="/iphone" className="font-medium text-[32px] lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Iphone <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/macbook" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Macbook <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/macbook" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Macbook <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/watch" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Watch <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/watch" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Watch <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/airpods" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Airpods <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/airpods" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Airpods <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/sound" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Âm thanh <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/sound" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Âm thanh <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/accessories" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Phụ kiện <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/accessories" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Phụ kiện <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/news" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Tin tức <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/news" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Tin tức <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
-                <Link to="/support" className="font-medium text-[32px] hover:opacity-60 flex justify-between mr-3 group h-4">
-                  Hỗ trợ <FontAwesomeIcon icon={faChevronRight}  className="h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
+                <Link to="/support" className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4">
+                  Hỗ trợ <FontAwesomeIcon icon={faChevronRight}  className="lg:hidden lg:hover:opacity-0 h-6 w-6 opacity-0 group-hover:opacity-100 duration-150 ease-linear"/>
                 </Link>
               </div>
             </div>
