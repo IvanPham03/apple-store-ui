@@ -52,7 +52,7 @@ const SignUp = () => {
     if (isValid) {
       try {
         const request = await axios.post(
-          process.env.REACT_APP_API_ENDPOINT + "/auth/signup",
+          process.env.Server + "/auth/signup",
           {
             name: name,
             email: email,

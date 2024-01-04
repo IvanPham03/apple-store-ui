@@ -1,18 +1,19 @@
 import { Link, useNavigate} from "react-router-dom";
-import { memo } from "react";
 import img from "assets/img/ip-14-series.png";
 import star from "assets/icon/star.png";
 import heart from "assets/icon/heart.png";
 
-const Card = memo(props => {
-  // console.log('render-card')
+const Card = props => {
   const iphone = props.iphone;
+  console.log(iphone.price);
   const isSwiping = props.isSwiping;
   const price = iphone.price && iphone.price.toLocaleString();
+  const priceDiscounted = (iphone.price - iphone.price * iphone.stock/100).toLocaleString()
   let navigate = useNavigate(); 
   const handleClick = () => {
     if (!isSwiping) {
-    navigate(`/${iphone.model}`)
+      // lưu ý phải dùng / trước detail để bắt từ root, còn nếu không có / thì nó sẽ nối tiếp url hiện tại
+    navigate(`/details/${iphone.slug}`)
     }
   }
   return (
@@ -20,15 +21,15 @@ const Card = memo(props => {
       className="block max-w-[250px] xl:h-[380px] rounded-[8px] bg-white shadow-[1px_1px_4px_rgba(0,0,0,0.25)] border-[.1px] border-slate-200 group hover:cursor-pointer" onClick={handleClick}
     >
       {/* label discount */}
-      {iphone.discount > 0
+      {iphone.stock > 0
         ? <p className="bg-red-500 text-white inline-block py-1 px-4 rounded-tl-[7px] rounded-br-[7px]">
-            {iphone.discount}%
+            {iphone.stock}%
           </p>
         : <p className="block h-7" />}
       <div className="grid justify-items-center items-center h-[200px] my-2">
         <img
           src={img}
-          className="object-cover h-[200px] group-hover:scale-125 transition"
+          className="object-cover h-[200px] group-hover:scale-125 transition" alt="img"
         />
       </div>
       <div className="mx-4">
@@ -37,9 +38,9 @@ const Card = memo(props => {
         </p>
         <div className="flex justify-between my-4">
           <span className="text-red-500 font-bold">
-            {" "}{iphone.priceDiscounted.toLocaleString()}đ
+            {" "}{priceDiscounted}đ
           </span>
-          {iphone.discount > 0
+          {iphone.stock > 0
             ? <span className="text-gray-500 line-through font-bold text-xs flex items-center ">
                 {price}đ
               </span>
@@ -63,6 +64,6 @@ const Card = memo(props => {
       </div>
     </div>
   );
-});
+};
 
 export default Card;

@@ -14,7 +14,7 @@ axios.defaults.withCredentials = true;
 // ===============
 const Login = () => {
   const navigate = useNavigate();
-  const { googleSignIn, user, setUser, fecthUser } = UserAuth();
+  // const { googleSignIn, user, setUser, fecthUser } = UserAuth();
   const [inputValue, setInputValue] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
+      // await googleSignIn();
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +38,7 @@ const Login = () => {
   const submitLogin = async(inputValue, password) =>{
     if (isValidEmail(inputValue)) {
       const data = await axios
-        .post(process.env.REACT_APP_API_ENDPOINT + "/auth/signin", {
+        .post(process.env.Server + "/auth/signin", {
           email: inputValue,
           password: password
         })
@@ -52,7 +52,7 @@ const Login = () => {
         return data 
     } else if (isValidPhone(inputValue)) {
       const data = await axios
-        .post(process.env.REACT_APP_API_ENDPOINT + "/auth/signin", {
+        .post(process.env.Server + "/auth/signin", {
           phone: inputValue,
           password: password
         })
@@ -79,15 +79,15 @@ const Login = () => {
     const token = await submitLogin(inputValue, password)
 
     console.log('token', token)
-    if(token){
-      try {
-        const data = await fecthUser(token)
-        setUser(data)
-        navigate("/");
-      } catch (error) {
-        throw new Error(error)
-      }
-    }
+    // if(token){
+    //   try {
+    //     const data = await fecthUser(token)
+    //     setUser(data)
+    //     navigate("/");
+    //   } catch (error) {
+    //     throw new Error(error)
+    //   }
+    // }
   };
   return (
     <div className="w-[1280px] h-[1200px] grid place-items-center content-start my-10 ">

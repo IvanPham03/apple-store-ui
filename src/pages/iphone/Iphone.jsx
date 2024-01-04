@@ -5,29 +5,27 @@ import Type from "components/type/Type";
 import News from "components/news/News";
 import img from "assets/img/ip-14-series.png";
 import iphone from "assets/img/progroup-mb-pro-m2-230612102526.webp";
-import { useDispatch, useSelector } from "react-redux";
-import actions from "redux/actions";
-import { productsState$ } from "redux/selectors";
 import Filter from "components/card/Filter";
 import axios from "axios";
-
+import AxiosInstance from '../../api/axiosInstance'
 const Iphone = () => {
-  const dispatch = useDispatch();
-  const iphonesState = useSelector(productsState$); // list iphone default from redux store
+  // const dispatch = useDispatch();
+  // const iphonesState = useSelector(productsState$); // list iphone default from redux store
   const [selectFilterScreenSize, setSelectFilterScreenSize] = useState([]);
   const [selectFilterPrice, setSelectFilterPrice] = useState([]);
   const [selectFilterStorage, setSelectFilterStorage] = useState([]);
   const [selectFilterSort, setSelectFilterSort] = useState([]);
   const [fetchAllIphones, setFetchAllIphones] = useState([]);
+  const [iphones, setIphones] = useState(null);
   const [query, setQuery] = useState({
     category: "iphone"
   });
   // data to show carousel - 10 item
-  fetchAllIphones &&
-    fetchAllIphones.sort(
+  iphones &&
+  iphones.sort(
       (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
     ); // sort new first
-  const carouselData = fetchAllIphones.slice(0, 10); // slice 10 product
+  const carouselData = iphones // slice 10 product
 
   //
   const typeIphone = [
@@ -50,50 +48,42 @@ const Iphone = () => {
   const handleFilterSort = selectFilter => {
     setSelectFilterSort(selectFilter);
   };
-  // console.log("select size", selectFilterScreenSize);
-  // console.log("select price", selectFilterPrice);
-  // console.log("select storage", selectFilterStorage);
-  // option select screen size
   const screenSize = [4.7, 5.8, 6.1, 6.5, 6.7];
   const price = ["0-10", "10-20", "20-30"];
   const storage = ["64GB", "128GB", "256GB", "512GB", "1TB"];
   const sort = ["Giá tăng dần", "Giá giảm dần"];
 
-  //
-  useEffect(
-    () => {
-      dispatch(actions.product.fetchProducts.fetchProductsRequest(query));
-    },
-    [dispatch, query]
-  );
-
-  //
-  useEffect(
-    () => {
-      setQuery({
-        category: "iphone",
-        sort: selectFilterSort,
-        screenSize: selectFilterScreenSize,
-        storage: selectFilterStorage,
-        price: selectFilterPrice
-      });
-    },
-    [
-      selectFilterScreenSize,
-      selectFilterPrice,
-      selectFilterStorage,
-      selectFilterSort
-    ]
-  );
-
-  //
+  const fetchIphone = async () => {
+    try {
+      const res = await AxiosInstance.get(
+        process.env.REACT_APP_Server + `/product/category/iphone`
+      );
+      setIphones(res.data);
+    } catch (error) {
+      console.log("Error fetch iphone:", error);
+    }
+  };
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_ENDPOINT + "/product", {
-        params: { category: "iphone" }
-      })
-      .then(res => setFetchAllIphones(res.data));
+    fetchIphone();
   }, []);
+  // useEffect(
+  //   () => {
+  //     setQuery({
+  //       category: "iphone",
+  //       sort: selectFilterSort,
+  //       screenSize: selectFilterScreenSize,
+  //       storage: selectFilterStorage,
+  //       price: selectFilterPrice
+  //     });
+  //   },
+  //   [
+  //     selectFilterScreenSize,
+  //     selectFilterPrice,
+  //     selectFilterStorage,
+  //     selectFilterSort
+  //   ]
+  // );
+
   return (
     <Fragment>
       <div className="flex justify-between gap-8 my-6 2xl:w-[1280px] xl:w-[1200px]">
@@ -109,7 +99,7 @@ const Iphone = () => {
         <div className="2xl:w-[1280px] xl:w-[1200px]">
           <div className="grid justify-items-center content-start">
             <Type type={typeIphone} />
-            <Carousel iphones={carouselData} />
+            <Carousel iphones={iphones} />
             <div className="w-full">
               <p className="text-xl font-medium py-2">
                 Chọn sản phẩm theo tiêu chí
@@ -139,7 +129,7 @@ const Iphone = () => {
                 />
               </div>
             </div>
-            <Cards data={iphonesState} root={'iphone'}/>
+            <Cards data={iphones} root={'iphone'}/>
           </div>
         </div>
       </div>

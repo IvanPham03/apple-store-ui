@@ -5,11 +5,11 @@ import { AuthContextProvider } from "auth/AuthContext";
 const App = ({ routes }) => {
   return (
     <div className="w -screen">
-      <CookiesProvider>
-        <AuthContextProvider>
+      {/* <CookiesProvider> */}
+        {/* <AuthContextProvider> */}
           <Route routes={routes} />
-        </AuthContextProvider>
-      </CookiesProvider>
+        {/* </AuthContextProvider> */}
+      {/* </CookiesProvider> */}
     </div>
   );
 };

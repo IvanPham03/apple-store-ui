@@ -1,8 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProducts } from "redux/actions";
-import { productsState$ } from "redux/selectors";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";

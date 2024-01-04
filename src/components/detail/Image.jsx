@@ -3,14 +3,13 @@ import Slider from "react-slick";
 import img from "assets/img/ip-14-series.png";
 import im from "assets/img/iphone-14-pro-den.jpg";
 import "./custom.css";
-import { NavLink } from "react-router-dom";
 const Image = () => {
   const settings = {
     customPaging: function (i) {
       return (
-        <NavLink className="block h-full w-[80px]">
-          <img src={img} className="object-cover h-full w-full rounded-lg" />
-        </NavLink>
+        <div className="flex h-full w-[80px] items-center">
+          <img src={img} className="object-cover h-[80px] w-[80px]" alt="img"/>
+        </div>
       );
     },
     dots: true,
@@ -24,26 +23,28 @@ const Image = () => {
     arrows: false
   };
   return (
-      <Slider {...settings} className="w-2/5 h-[500px]">
-        <div className="w-[350px] rounded-xl hover:scale-110 transition">
-          <img src={im} className="object-cover object-center h-full rounded-xl" />
+      <Slider {...settings} className="w-4/5 h-[500px] mt-0">
+        <div className="w-[350px] rounded-xl hover:scale-110 transition border-none">
+          <img src={im} className="object-cover object-center h-full rounded-xl bg-none border-none" alt=""/>
         </div>
         
         <div className="w-[350px] rounded-xl hover:scale-110 transition">
-          <img src={im} className="object-cover object-center h-full rounded-xl" />
+          <img src={im} className="object-cover object-center h-full rounded-xl" alt=""/>
         </div>
         
         <div className="w-[350px] rounded-xl hover:scale-110 transition">
-          <img src={im} className="object-cover object-center h-full rounded-xl" />
+          <img src={im} className="object-cover object-center h-full rounded-xl" alt=""/>
         </div>
         
         <div className="w-[350px] rounded-xl hover:scale-110 transition">
-          <img src={im} className="object-cover object-center h-full rounded-xl" />
+          <img src={im} className="object-cover object-center h-full rounded-xl" alt=""/>
         </div>
         
         <div className="w-[350px] rounded-xl hover:scale-110 transition">
-          <img src={im} className="object-cover object-center h-full rounded-xl" />
+          <img src={im} className="object-cover object-center h-full rounded-xl" alt=""/>
         </div>
+        
+       
         
       </Slider>
   );

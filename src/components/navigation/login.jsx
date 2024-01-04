@@ -16,9 +16,9 @@ const capitalizeFirstLetter = (str) => {
 }
 const Login = () => {
   const [cookies, removeCookie] = useCookies(['access-token','refresh-token'])
-  const {user, setUser} = UserAuth()
+  // const {user, setUser} = UserAuth()
   const [isButtonVisible, setIsButtonVisible] = useState(false);
-  const [dataUser, setDataUser] = useState(user)
+  // const [dataUser, setDataUser] = useState(user)
   const toggleButtonVisibility = () => {
     setIsButtonVisible(!isButtonVisible);
   };
@@ -31,7 +31,7 @@ const Login = () => {
   const handleLogOut = async() =>{
     if(cookies["refresh-token"] !== "" && cookies["access-token"] !== "" ){
       try {
-        const res = await axios.post(process.env.REACT_APP_API_ENDPOINT + "/auth/logout", null,{
+        const res = await axios.post(process.env.Server + "/auth/logout", null,{
           headers:{
             authorization: `Bearer ${cookies["refresh-token"]}`
           }
@@ -41,7 +41,7 @@ const Login = () => {
         removeCookie('access-token');
         navigate('/')
         setIsButtonVisible(false)
-        setDataUser(undefined)
+        // setDataUser(undefined)
       } catch (error) {
         throw new Error(error)
       }
@@ -49,7 +49,7 @@ const Login = () => {
   }
  
   return (
-    <div className="relative ">
+    <div className="relative mx-0 my-auto">
       <Button
         className="h-6 self-center p-0 bg-transparent flex hover:opacity-60"
         onClick={toggleButtonVisibility}
@@ -59,7 +59,7 @@ const Login = () => {
       <div className="px-4 absolute right-5 text-right bg-main rounded drop-shadow-lg">
         {isButtonVisible && (
           <>
-            {dataUser ? (
+            {/* {dataUser ? (
               <div>
                 <button className="flex gap-2 my-2 items-center w-[100px]">
                   <FontAwesomeIcon icon={faGear} /> <p>{capitalizeFirstLetter(dataUser.name)}</p>
@@ -72,7 +72,7 @@ const Login = () => {
               <button className="flex gap-2 my-2 items-center w-[100px]" onClick={handleNavLogin}>
                 <FontAwesomeIcon icon={faRightToBracket} /> <p>Đăng nhập</p>
               </button>
-            )}
+            )} */}
           </>
         )}
       </div>

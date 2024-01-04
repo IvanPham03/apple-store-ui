@@ -17,7 +17,7 @@ const Type = ({ type }) => {
       {typeRender.map(item => {
         return (
           <NavLink
-            className="flex flex-col justify-center group hover:translate-y-[-4px] transition-transform  duration-500"
+            className="flex flex-col justify-center items-center group hover:translate-y-[-4px] transition-transform  duration-500"
             to="/iphone"
             key={item.url}
           >
@@ -28,7 +28,7 @@ const Type = ({ type }) => {
                 alt="img-type"
               />
             </div>
-            <p className="group-hover:text-red-500 text-xs lg:text-lg max-w-[80px]">
+            <p className="group-hover:text-red-500 text-xs lg:text-sm">
               {Capitalize(item.title)}
             </p>
           </NavLink>

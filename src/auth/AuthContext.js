@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
       if (token !== undefined) {
         console.log('token', token);
         const response = await axios.get(
-          process.env.REACT_APP_API_ENDPOINT + "/auth/user",
+          process.env.Server + "/auth/user",
           {
             headers: {
               Authorization: `Bearer ${token}`

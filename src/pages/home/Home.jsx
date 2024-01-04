@@ -4,41 +4,35 @@ import videoIntro from "assets/video/hello-video-intro.mp4";
 import img from "assets/img/ip-14-series.png";
 import News from "components/news/News";
 import Type from "components/type/Type";
-import axios from "axios";
-const MultipleRows= lazy(() => import("components/card/Multi"));
-
+import MultipleRows from "../../components/card/Multi";
+import AxiosInstance from "../../api/axiosInstance";
 const Home = () => {
-  const [fetchAllIphones, setFetchAllIphones] = useState([]);
-  const [fetchAllMacbooks, setFetchAllMacbooks] = useState([]);
-  const [fetchAllAirpods, setFetchAllAirpods] = useState([]);
-  const [fetchAllIpads, setFetchAllIpads] = useState([]);
   const typeIphone = [
     { title: "iPhone 11 series", img: { img }, url: "iphone-11" },
     { title: "iPhone 12 series", img: { img }, url: "iphone-12" },
     { title: "iPhone 13 series", img: { img }, url: "iphone-13" },
-    { title: "iPhone 14 series", img: { img }, url: "iphone-14" },
+    { title: "iPhone 14 series", img: { img }, url: "iphone-14" }
   ];
-  const linkIphone = process.env.REACT_APP_API_DOMAIN + '/iphone'
-  const linkMac = process.env.REACT_APP_API_DOMAIN + '/macbook'
-  const linkAirpods = process.env.REACT_APP_API_DOMAIN + '/airpods'
-  const linkIpad = process.env.REACT_APP_API_DOMAIN + '/ipad'
+  const [iphone, setIphopne] = useState(null);
 
+  const fetchIphone = async () => {
+    try {
+      console.log("start");
+      const res = await AxiosInstance.get(
+        process.env.REACT_APP_Server + `/product/category/iphone`
+      );
+      // console.log(res.data);
+      setIphopne(res.data);
+    } catch (error) {
+      console.log("Error fetch iphone:", error);
+    }
+  };
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_ENDPOINT + "/product", {
-        params: { category: "iphone" }
-      })
-      .then(res => {setFetchAllIphones(res.data)
-      setFetchAllMacbooks(res.data)
-      setFetchAllAirpods(res.data)
-      setFetchAllIpads(res.data)
-    });
+    fetchIphone();
   }, []);
-  
   return (
     <Fragment>
       {/* intro */}
-      <Suspense fallback={<>hello</>}></Suspense>
       <video
         autoPlay
         loop
@@ -52,24 +46,24 @@ const Home = () => {
         {/* series to nav */}
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows products={fetchAllIphones} />
+          {iphone && <MultipleRows products={iphone} />}
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows  products ={fetchAllMacbooks}/>
+          {iphone && <MultipleRows products={iphone} />}
         </div>
         <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows products = {fetchAllIpads} />
+          {iphone && <MultipleRows products={iphone} />}
         </div>
-        <div className="grid justify-items-center content-stawrt bg-gradient-to-b from-[#F4F9F9] to-white">
+        <div className="grid justify-items-center content-start bg-gradient-to-b from-[#F4F9F9] to-white">
           <Type type={typeIphone} />
-          <MultipleRows products = {fetchAllAirpods}/>
+          {iphone && <MultipleRows products={iphone} />}
         </div>
       </div>
       {/* list news */}
       <News />
-      <Suspense/>
+      <Suspense />
     </Fragment>
   );
 };

@@ -11,7 +11,6 @@ import iconLeft from "assets/icon/arrow-left.png";
 import iconRight from "assets/icon/arrow-right.png";
 import './custom.css'
 
-// all
 
 
 // 1 row
@@ -20,7 +19,7 @@ const Carousel = ({iphones}) => {
   const [sliderRef, setSliderRef] = useState(null);
   // check có đang swipe không, xử lý trường hợp khi swipe nó lại dính onclick
   const [isSwiping, setIsSwiping] = useState(false);
- // nó được gị 1 lần, nhưng nó sẽ bị re render do slick render lai
+ // nó được goị 1 lần, nhưng nó sẽ bị re render do slick render lai
 
   const settings = {
     speed: 1000,
@@ -45,23 +44,23 @@ const Carousel = ({iphones}) => {
           Sản phẩm bán chạy
         </p>
         <p className="flex gap-3 h-[30px] mr-4">
-          <Button className="rounded-none px-0 bg-transparent" onClick={sliderRef?.slickPrev}>
-            <img
-              src={iconLeft}
-              alt="icon-left"
-              className="object-contain h-full border-2 rounded-sm"
-            />
-          </Button>
-          <Button className="rounded-none px-0 bg-transparent" onClick={sliderRef?.slickNext}>
-            <img
-              src={iconRight}
-              alt="icon-right"
-              className="object-contain h-full border-2 rounded-sm"
-            />
-          </Button>
+        <Button className="rounded-none px-0 bg-transparent" onClick={sliderRef?.slickPrev}>
+                    <img
+                      src={iconLeft}
+                      alt="icon-left"
+                      className="object-contain h-full border-2 rounded-sm"
+                    />
+                  </Button>
+                  <Button className="rounded-none px-0 bg-transparent" onClick={sliderRef?.slickNext}>
+                    <img
+                      src={iconRight}
+                      alt="icon-right"
+                      className="object-contain h-full border-2 rounded-sm"
+                    />
+                  </Button>
         </p>
       </div>
-      <div className="2xl:w-[1280px] xl:w-[1200px] lg:hidden overflow-hidden">
+      <div className="2xl:w-[1280px] xl:w-[1200px] overflow-hidden">
         <Slider {...settings} ref={setSliderRef} className="my-2">
         {iphones &&
             iphones.map((iphone) => {
@@ -75,3 +74,5 @@ const Carousel = ({iphones}) => {
   );
 };
 export default Carousel
+
+
