@@ -9,3 +9,5 @@ export { default as Accessories } from "./accessories/Accessories.jsx";
 export { default as Support } from "./support/Support.jsx";
 export { default as News } from "./news/News.jsx";
 export { default as Errors } from "./errors/Errors.jsx";
+export { default as Cart } from "./cart/Cart.jsx";
+export { default as CheckOut } from "./cart/CheckOut.jsx";

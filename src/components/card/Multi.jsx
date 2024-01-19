@@ -52,13 +52,13 @@ const MultipleRows = props => {
         </Slider>
         <div className="flex justify-center my-14 ">
           <button
-            className="flex group items-center h-12 border border-1 border-red-500 bg-main place-products-center py-2 px-8 rounded-lg gap-2 hover:bg-red-500 transition duration-200 ease-linear"
+            className="flex w-auto group items-center h-12 border border-1 border-red-500 bg-main place-products-center py-2 px-8 rounded-lg gap-2 hover:bg-red-500 transition duration-200 ease-linear"
             onMouseOver={() => setOver(true)}
             onMouseLeave={() => setOver(false)}
           >
             <NavLink
               to={props.link}
-              className="font-medium group-hover:text-white transition"
+              className="font-medium group-hover:text-white transition w-48"
             >
               Xem toàn bộ sản phẩm{" "}
             </NavLink>

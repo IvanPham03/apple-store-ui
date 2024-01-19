@@ -9,7 +9,9 @@ import {
   Accessories,
   Support,
   News,
-  Errors
+  Errors,
+  Cart,
+  CheckOut
 } from "pages";
 
 import { DefaultLayout, AuthLayout } from "components/layout";
@@ -32,6 +34,16 @@ const routes = [
     component: Detail,
     layout: DefaultLayout
   },
+  {
+    path: "/cart",
+    component: Cart,
+    layout: DefaultLayout
+  },
+  {
+    path: "/check-out",
+    component: CheckOut,
+    layout: DefaultLayout
+  }
 
   // {
   //   path: "/macbook",
@@ -73,16 +85,17 @@ const routes = [
   //   component: News,
   //   layout: DefaultLayout
   // },
-  // {
-  //   path: "/signin",
-  //   component: SignIn,
-  //   layout: AuthLayout
-  // },
-  // {
-  //   path: "/signup",
-  //   component: SignUp,
-  //   layout: AuthLayout
-  // },
+  ,
+  {
+    path: "/signin",
+    component: SignIn,
+    layout: AuthLayout
+  },
+  {
+    path: "/signup",
+    component: SignUp,
+    layout: AuthLayout
+  },
   {
     path: "details/:slug",
     component: Detail,

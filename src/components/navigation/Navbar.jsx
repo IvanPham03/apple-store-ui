@@ -16,21 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./index.css";
-// import { useCookies } from "react-cookie";
-// import axios from "axios";
-
-// const fecthUser = async(token) =>{
-//   try {
-//     const response = await axios.get(process.env.Server+'/auth/user', {
-//       headers:{
-//         'Authorization': `Bearer ${token}`
-//       }
-//     })
-//     return response.data
-//   } catch (error) {
-//     console.log('fetch user: ',error)
-//   }
-// }
+import { useCookies } from "react-cookie";
 
 const Nav = () => {
   const [stickyClass, setStickyClass] = useState("relative");
@@ -38,7 +24,9 @@ const Nav = () => {
   const navigate = useNavigate();
   const btnSearch = useRef();
   const containerNav = useRef();
-  const containerSearch = useRef();
+  const search = useRef();
+  const searchRes = useRef();
+  const [cookies, setCookie] = useCookies(["access-token"]);
   // const [cookies] = useCookies(['access-token']);
   const [loggedIn, setLoggedIn] = useState(false);
   const [active, setActive] = useState(false);
@@ -60,9 +48,28 @@ const Nav = () => {
 
   // }, [cookies['access-token']])
   const handleClickBtnSearch = () => {
-    setActive(!active);
-    // containerSearch.current.classList.toggle("active");
-    // containerNav.current.classList.toggle("lg:block");
+    if (!active) {
+      containerNav.current.classList.add("w-0");
+      setActive(true);
+    }
+    if (active) {
+      search.current.classList.add("inactive");
+      searchRes.current.classList.add("inactive");
+      setTimeout(() => {
+        setActive(false);
+        containerNav.current.classList.remove("search-input");
+        search.current.classList.remove("inactive");
+        searchRes.current.classList.remove("inactive");
+        containerNav.current.classList.remove("w-0");
+      }, 350);
+    }
+  };
+  const eventClickCart = () => {
+    if (cookies["access-token"]) {
+      navigate("/cart");
+    } else {
+      navigate("/signin");
+    }
   };
 
   return (
@@ -78,41 +85,56 @@ const Nav = () => {
                 Apple Store
               </span>
             </Link>
+            {/* chứa nút chức năng search, cart và login */}
             <div
-              ref={containerSearch}
+              ref={search}
               className={`flex justify-between gap-8 lg:order-2 relative rounded-lg bg-transparent ${
-                active ? "active" : "inactive"
+                active ? "active" : ""
               }`}
             >
-              <div className="h-9 self-center p-0 flex rounded-lg bg-transparent">
-                <input
-                  type="text"
-                  className="w-0 rounded-lg focus:outline-none -mr-10 pl-2 placeholder"
-                  placeholder="Bạn cần tìm gì?"
-                />
-                <Button
-                  ref={btnSearch}
-                  onClick={handleClickBtnSearch}
-                  className="bg-none"
-                >
+              {/* search */}
+              <div className="container">
+                <div className="search h-9 self-center flex items-center inver">
+                  {/* khung nhập tìm kiếm */}
+                  <input
+                    type="text"
+                    className="w-0 focus:outline-none placeholder bg-transparent"
+                    placeholder="Bạn cần tìm gì?"
+                  />
+                  <button
+                    ref={btnSearch}
+                    onClick={handleClickBtnSearch}
+                    className="hover:opacity-60 flex items-center"
+                  >
+                    <FontAwesomeIcon
+                      icon={faMagnifyingGlass}
+                      className="h-6 w-5"
+                      style={{ color: "black" }}
+                    />
+                  </button>
+                </div>
+                <div className="container-result w-0" ref={searchRes}></div>
+                {/* chứa kết quả search */}
+              </div>
+              {/* cart */}
+              <div
+                className="relative w-8 h-9 self-center p-0 bg-transparent hover:opacity-60 flex items-center"
+                onClick={() => {
+                  eventClickCart();
+                }}
+              >
+                <button className="block w-8 h-9 self-center p-0 bg-transparent hover:opacity-60">
                   <FontAwesomeIcon
-                    icon={faMagnifyingGlass}
+                    icon={faCartShopping}
                     className="h-5 w-5"
                     style={{ color: "black" }}
                   />
-                </Button>
+                </button>
               </div>
-
-              <Button className="w-8 h-9 self-center p-0 bg-transparent hover:opacity-60">
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  className="h-5 w-5"
-                  style={{ color: "black" }}
-                />
-              </Button>
+              {/* login */}
               <Login />
-              <Button
-                className="w-8 h-9 self-center p-0 bg-transparent hover:opacity-60 lg:hidden"
+              <button
+                className="h-9 self-center p-0 bg-transparent hover:opacity-60 lg:hidden"
                 data-collapse-toggle="navbar-sticky"
                 type="button"
               >
@@ -121,17 +143,17 @@ const Nav = () => {
                   className="h-5 w-5"
                   style={{ color: "black" }}
                 />
-              </Button>
+              </button>
             </div>
             <div
-              className=" h-6 hidden lg:hidden lg:oder-1 absolute lg:static "
+              className=" h-6 hidden lg:block lg:oder-1 absolute lg:static overflow-hidden"
               id="navbar-sticky"
               ref={containerNav}
             >
-              <div className="left-0 h-[100px] right-0 flex bg-main justify-start fixed -ml-2 lg:ml-0 flex-col lg:bg-inherit lg:flex-row lg:w-auto lg:h-auto lg:gap-8 lg:static lg:justify-center  gap-10 pl-8">
+              <div className="left-0 h-[100px] right-0 flex bg-main items-center fixed lg:ml-0 flex-col lg:bg-inherit lg:flex-row lg:w-auto lg:h-auto lg:gap-8 lg:static lg:justify-center  gap-10">
                 <Link
                   to="/iphone"
-                  className="font-medium text-[32px] lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px] lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Iphone{" "}
                   <FontAwesomeIcon
@@ -141,7 +163,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/macbook"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Macbook{" "}
                   <FontAwesomeIcon
@@ -151,7 +173,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/watch"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Watch{" "}
                   <FontAwesomeIcon
@@ -161,7 +183,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/airpods"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Airpods{" "}
                   <FontAwesomeIcon
@@ -171,7 +193,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/sound"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Âm thanh{" "}
                   <FontAwesomeIcon
@@ -181,7 +203,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/accessories"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Phụ kiện{" "}
                   <FontAwesomeIcon
@@ -191,7 +213,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/news"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Tin tức{" "}
                   <FontAwesomeIcon
@@ -201,7 +223,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   to="/support"
-                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between mr-3 group h-4"
+                  className="font-medium text-[32px]  lg:text-base hover:opacity-60 flex justify-between group h-4"
                 >
                   Hỗ trợ{" "}
                   <FontAwesomeIcon
